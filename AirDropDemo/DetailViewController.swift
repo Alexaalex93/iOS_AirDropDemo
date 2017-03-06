@@ -40,4 +40,15 @@ class DetailViewController: UIViewController {
         return nil
     }
 
+    
+    //ATENCION!!! TOOLBAR EN IPADS HAY QUE HACERLO DISTINTO QUE EN IPHONE
+    @IBAction func compartir(_ sender: AnyObject) {
+        if let fileURL = fileToURL(file: filename){
+            let objectsToShare = [fileURL]
+            let activityController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            let excludedActivities = [UIActivityType.postToFlickr, UIActivityType.postToWeibo, UIActivityType.mail, UIActivityType.message, UIActivityType.copyToPasteboard]
+            activityController.excludedActivityTypes = excludedActivities
+            present(activityController, animated: true, completion: nil)
+        }
+    }
 }
